@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             },
             production: {
                 options: {
-                    compress:true
+                    compress: true,
                 },
                 files: {
                     'dist/styles/main.min.css': 'src/styles/main.less'
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         },
         watch: {
             less: {
-                files: ['src/styles/*.less'],
+                files: ['src/styles/**/*.less'],
                 tasks: ['less:development']
             },
             html: {
@@ -100,7 +100,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['less', 'replace:dist', 'htmlmin:dist', 'clean', 'uglify']);
+    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify']);
 }
